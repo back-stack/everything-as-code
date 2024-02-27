@@ -1,0 +1,80 @@
+---
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: add-limit-range
+  annotations:
+    policies.kyverno.io/description: >-
+      Generate LimitRange based on Namespace type
+spec:
+  background: false
+  rules:
+    - name: add-limit-range-sm
+      match:
+        resources:
+          kinds:
+            - Namespace
+          selector:
+            matchLabels:
+              type: small
+      generate:
+        kind: LimitRange
+        apiVersion: v1
+        name: limit-range-sm
+        namespace: "{{request.object.metadata.name}}"
+        data:
+          spec:
+            limits:
+              - default:
+                  memory: 512Mi
+                  cpu: 100m
+                defaultRequest:
+                  memory: 128Mi
+                  cpu: 100m
+                type: Container
+    - name: add-limit-range-md
+      match:
+        resources:
+          kinds:
+            - Namespace
+          selector:
+            matchLabels:
+              type: medium
+      generate:
+        kind: LimitRange
+        apiVersion: v1
+        name: limit-range-md
+        namespace: "{{request.object.metadata.name}}"
+        data:
+          spec:
+            limits:
+              - default:
+                  memory: 512Mi
+                  cpu: 100m
+                defaultRequest:
+                  memory: 128Mi
+                  cpu: 100m
+                type: Container
+    - name: add-limit-range-lg
+      match:
+        resources:
+          kinds:
+            - Namespace
+          selector:
+            matchLabels:
+              type: large
+      generate:
+        kind: LimitRange
+        apiVersion: v1
+        name: limit-range-lg
+        namespace: "{{request.object.metadata.name}}"
+        data:
+          spec:
+            limits:
+              - default:
+                  memory: 512Mi
+                  cpu: 100m
+                defaultRequest:
+                  memory: 128Mi
+                  cpu: 100Mi
+                type: Container
