@@ -1,0 +1,28 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/kubernetes-helm-minikube
+{
+	"name": "everything-as-code",
+	// Use a Dockerfile or Docker Compose file.
+	// https://containers.dev/guide/dockerfile
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"enableNonRootDocker": "true",
+			"moby": "true"
+		}
+	},
+	
+	"hostRequirements": {
+		"cpus": 4
+	},
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "/bin/bash -c .devcontainer/post-create.sh",
+
+	// Use 'postStartCommand' to run commands after the container is created like starting minikube.
+	"postStartCommand": "/bin/bash -c .devcontainer/post-start.sh",
+
+}
