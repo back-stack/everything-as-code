@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kyverno
+spec:
+  destination:
+    name: eks-everything-as-code
+    namespace: kyverno
+  source:
+    repoURL: 'https://kyverno.github.io/kyverno/'
+    chart: kyverno
+    targetRevision: 3.1.4
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
