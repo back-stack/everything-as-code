@@ -17,5 +17,5 @@ export AKUITY_SERVER_URL=https://akuity.cloud
 ## Terraform
 ```
 terraform init
-terraform apply -var akp_org_name=morey-tech -var argocd_admin_password=admin
+terraform apply -var akp_org_name=<akuity-platform-org> -var argocd_admin_password=<my-admin-password>
 ```
