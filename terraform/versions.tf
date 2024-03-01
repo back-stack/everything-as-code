@@ -24,11 +24,11 @@ terraform {
   # }
 }
 
-# provider "argocd" {
-#   server_addr = module.akuity.akuity_server_addr
-#   username    = "admin"
-#   password    = var.argocd_admin_password
-# }
+provider "argocd" {
+  server_addr = "${akp_instance.argocd.argocd.spec.instance_spec.subdomain}.cd.akuity.cloud:443"
+  username    = "admin"
+  password    = var.argocd_admin_password
+}
 
 provider "akp" {
   org_name = var.akp_org_name
