@@ -2,7 +2,9 @@ resource "akp_instance" "argocd" {
   name = local.name
   argocd = {
     "spec" = {
-      "instance_spec" = {}
+      "instance_spec" = {
+        "declarative_management_enabled" = true
+      }
       "version" = "v2.10.1"
     }
   }
