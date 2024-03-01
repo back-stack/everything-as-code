@@ -8,7 +8,7 @@ terraform {
     }
     akp = {
       source  = "akuity/akp"
-      version = "~> 0.6.1"
+      version = "~> 0.6.2"
     }
     argocd = {
       source  = "oboukili/argocd"
@@ -30,11 +30,11 @@ terraform {
 #   password    = var.argocd_admin_password
 # }
 
-# provider "akp" {
-#   org_name = var.akp_org_name
-#   # api_key_id     = AKUITY_API_KEY_ID
-#   # api_key_secret = AKUITY_API_KEY_SECRET
-# }
+provider "akp" {
+  org_name = var.akp_org_name
+  # api_key_id     = AKUITY_API_KEY_ID
+  # api_key_secret = AKUITY_API_KEY_SECRET
+}
 
 provider "aws" {
   region = local.region

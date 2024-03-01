@@ -1,15 +1,14 @@
 ############
 ## Akuity ##
 ############
-# variable "akp_org_name" {
-#   type        = string
-#   description = "Akuity Platform organization name."
-# }
-
-# variable "argocd_admin_password" {
-#   type        = string
-#   description = "The password to use for the `admin` Argo CD user."
-# }
+variable "akp_org_name" {
+  type        = string
+  description = "Akuity Platform organization name."
+}
+variable "argocd_admin_password" {
+  type        = string
+  description = "The password to use for the `admin` Argo CD user."
+}
 
 variable "vpc_cidr" {
   description = "VPC CIDR"
