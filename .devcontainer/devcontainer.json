@@ -24,5 +24,12 @@
 
 	// Use 'postStartCommand' to run commands after the container is created like starting minikube.
 	"postStartCommand": "/bin/bash -c .devcontainer/post-start.sh",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"hashicorp.terraform"
+			]
+		}
+	},
 
 }
