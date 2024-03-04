@@ -5,7 +5,7 @@ metadata:
   name: add-limit-range
   annotations:
     policies.kyverno.io/description: >-
-      Generate LimitRange based on Namespace type
+      Generate LimitRange based on Namespace label type
 spec:
   background: false
   rules:
