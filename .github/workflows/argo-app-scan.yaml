@@ -7,7 +7,7 @@ on:
       - "main"
 
 jobs:
-  NCTL-Scan-Terraform:
+  NCTL-Scan-ArgoCD-Apps:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
