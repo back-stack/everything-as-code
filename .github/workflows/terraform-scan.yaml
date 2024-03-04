@@ -1,6 +1,7 @@
 name: NCTL Scan Terraform Demo
 run-name: ${{ github.actor }} has triggered Scan Action 🚀
 on:
+  workflow_dispatch:
   pull_request:
     branches:
       - "main"
@@ -30,6 +31,6 @@ jobs:
         # terraform init
         # terraform plan -out tfplan.binary
         # terraform show -json tfplan.binary | jq > payload.json
-        run: nctl scan terraform --policies controls/terraform-best-practices --resources config-files/terraform/payload.json
+        run: nctl scan terraform --policies policies/terraform/check-ec2-finops-compliance.yaml --resources terraform/tf-plan-nctl-scan.json
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
