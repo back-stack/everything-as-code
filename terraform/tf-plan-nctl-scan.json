@@ -24,6 +24,206 @@
   },
   "planned_values": {
     "root_module": {
+      "resources": [
+        {
+          "address": "akp_cluster.eks-cluster",
+          "mode": "managed",
+          "type": "akp_cluster",
+          "name": "eks-cluster",
+          "provider_name": "registry.terraform.io/akuity/akp",
+          "schema_version": 0,
+          "values": {
+            "kube_config": {
+              "client_certificate": null,
+              "client_key": null,
+              "config_context": null,
+              "config_context_auth_info": null,
+              "config_context_cluster": null,
+              "config_path": null,
+              "config_paths": null,
+              "insecure": null,
+              "password": null,
+              "proxy_url": null,
+              "token": "",
+              "username": null
+            },
+            "name": "eks-everything-as-code",
+            "namespace": "akuity",
+            "remove_agent_resources_on_destroy": false,
+            "spec": {
+              "data": {
+                "size": "small"
+              }
+            }
+          },
+          "sensitive_values": {
+            "annotations": {},
+            "kube_config": {
+              "token": true
+            },
+            "labels": {},
+            "spec": {
+              "data": {}
+            }
+          }
+        },
+        {
+          "address": "akp_instance.argocd",
+          "mode": "managed",
+          "type": "akp_instance",
+          "name": "argocd",
+          "provider_name": "registry.terraform.io/akuity/akp",
+          "schema_version": 0,
+          "values": {
+            "application_set_secret": null,
+            "argocd": {
+              "spec": {
+                "instance_spec": {
+                  "app_set_delegate": null,
+                  "declarative_management_enabled": true,
+                  "extensions": null,
+                  "host_aliases": null,
+                  "image_updater_delegate": null,
+                  "ip_allow_list": null,
+                  "repo_server_delegate": null
+                },
+                "version": "v2.10.1"
+              }
+            },
+            "argocd_cm": {
+              "accounts.admin": "login",
+              "exec.enabled": "false",
+              "ga.anonymizeusers": "false",
+              "helm.enabled": "true",
+              "kustomize.enabled": "true",
+              "server.rbac.log.enforce.enable": "false",
+              "statusbadge.enabled": "false",
+              "ui.bannerpermanent": "false",
+              "users.anonymous.enabled": "false"
+            },
+            "argocd_image_updater_config": null,
+            "argocd_image_updater_secret": null,
+            "argocd_image_updater_ssh_config": null,
+            "argocd_notifications_cm": null,
+            "argocd_notifications_secret": null,
+            "argocd_secret": {},
+            "config_management_plugins": null,
+            "name": "everything-as-code",
+            "repo_credential_secrets": null,
+            "repo_template_credential_secrets": null
+          },
+          "sensitive_values": {
+            "argocd": {
+              "spec": {
+                "instance_spec": {
+                  "appset_policy": {},
+                  "cluster_customization_defaults": {}
+                }
+              }
+            },
+            "argocd_cm": {},
+            "argocd_rbac_cm": {},
+            "argocd_secret": {},
+            "argocd_ssh_known_hosts_cm": {},
+            "argocd_tls_certs_cm": {}
+          }
+        },
+        {
+          "address": "argocd_application.app-of-apps",
+          "mode": "managed",
+          "type": "argocd_application",
+          "name": "app-of-apps",
+          "provider_name": "registry.terraform.io/oboukili/argocd",
+          "schema_version": 4,
+          "values": {
+            "cascade": true,
+            "metadata": [
+              {
+                "annotations": null,
+                "labels": {
+                  "cluster": "in-cluster"
+                },
+                "name": "app-of-apps",
+                "namespace": "argocd"
+              }
+            ],
+            "spec": [
+              {
+                "destination": [
+                  {
+                    "name": "in-cluster",
+                    "namespace": "argocd",
+                    "server": ""
+                  }
+                ],
+                "ignore_difference": [],
+                "info": [],
+                "project": "default",
+                "revision_history_limit": 10,
+                "source": [
+                  {
+                    "chart": null,
+                    "directory": [],
+                    "helm": [],
+                    "kustomize": [],
+                    "path": "argo-cd/apps",
+                    "plugin": [],
+                    "ref": null,
+                    "repo_url": "https://github.com/back-stack/everything-as-code",
+                    "target_revision": "HEAD"
+                  }
+                ],
+                "sync_policy": [
+                  {
+                    "automated": [
+                      {
+                        "allow_empty": null,
+                        "prune": true,
+                        "self_heal": true
+                      }
+                    ],
+                    "managed_namespace_metadata": [],
+                    "retry": [],
+                    "sync_options": null
+                  }
+                ]
+              }
+            ],
+            "timeouts": null,
+            "wait": true
+          },
+          "sensitive_values": {
+            "metadata": [
+              {
+                "labels": {}
+              }
+            ],
+            "spec": [
+              {
+                "destination": [{}],
+                "ignore_difference": [],
+                "info": [],
+                "source": [
+                  {
+                    "directory": [],
+                    "helm": [],
+                    "kustomize": [],
+                    "plugin": []
+                  }
+                ],
+                "sync_policy": [
+                  {
+                    "automated": [{}],
+                    "managed_namespace_metadata": [],
+                    "retry": []
+                  }
+                ]
+              }
+            ],
+            "status": []
+          }
+        }
+      ],
       "child_modules": [
         {
           "resources": [
@@ -180,24 +380,14 @@
               "provider_name": "registry.terraform.io/hashicorp/aws",
               "schema_version": 0,
               "values": {
-                "enabled_cluster_log_types": [
-                  "api",
-                  "audit",
-                  "authenticator"
-                ],
+                "enabled_cluster_log_types": ["api", "audit", "authenticator"],
                 "encryption_config": [
                   {
-                    "provider": [
-                      {}
-                    ],
-                    "resources": [
-                      "secrets"
-                    ]
+                    "provider": [{}],
+                    "resources": ["secrets"]
                   }
                 ],
-                "kubernetes_network_config": [
-                  {}
-                ],
+                "kubernetes_network_config": [{}],
                 "name": "everything-as-code",
                 "outpost_config": [],
                 "tags": {
@@ -216,43 +406,29 @@
                   {
                     "endpoint_private_access": true,
                     "endpoint_public_access": true,
-                    "public_access_cidrs": [
-                      "0.0.0.0/0"
-                    ]
+                    "public_access_cidrs": ["0.0.0.0/0"]
                   }
                 ]
               },
               "sensitive_values": {
                 "access_config": [],
                 "certificate_authority": [],
-                "enabled_cluster_log_types": [
-                  false,
-                  false,
-                  false
-                ],
+                "enabled_cluster_log_types": [false, false, false],
                 "encryption_config": [
                   {
-                    "provider": [
-                      {}
-                    ],
-                    "resources": [
-                      false
-                    ]
+                    "provider": [{}],
+                    "resources": [false]
                   }
                 ],
                 "identity": [],
-                "kubernetes_network_config": [
-                  {}
-                ],
+                "kubernetes_network_config": [{}],
                 "outpost_config": [],
                 "tags": {},
                 "tags_all": {},
                 "timeouts": {},
                 "vpc_config": [
                   {
-                    "public_access_cidrs": [
-                      false
-                    ],
+                    "public_access_cidrs": [false],
                     "security_group_ids": [],
                     "subnet_ids": []
                   }
@@ -268,9 +444,7 @@
               "provider_name": "registry.terraform.io/hashicorp/aws",
               "schema_version": 0,
               "values": {
-                "client_id_list": [
-                  "sts.amazonaws.com"
-                ],
+                "client_id_list": ["sts.amazonaws.com"],
                 "tags": {
                   "Name": "everything-as-code-eks-irsa",
                   "Owner": "nicholas-morey"
@@ -281,9 +455,7 @@
                 }
               },
               "sensitive_values": {
-                "client_id_list": [
-                  false
-                ],
+                "client_id_list": [false],
                 "tags": {},
                 "tags_all": {},
                 "thumbprint_list": []
@@ -343,9 +515,7 @@
                 }
               },
               "sensitive_values": {
-                "inline_policy": [
-                  {}
-                ],
+                "inline_policy": [{}],
                 "managed_policy_arns": [],
                 "tags": {},
                 "tags_all": {}
@@ -478,9 +648,7 @@
               "provider_name": "registry.terraform.io/hashicorp/aws",
               "schema_version": 2,
               "values": {
-                "cidr_blocks": [
-                  "0.0.0.0/0"
-                ],
+                "cidr_blocks": ["0.0.0.0/0"],
                 "description": "Allow all egress",
                 "from_port": 0,
                 "ipv6_cidr_blocks": null,
@@ -492,9 +660,7 @@
                 "type": "egress"
               },
               "sensitive_values": {
-                "cidr_blocks": [
-                  false
-                ],
+                "cidr_blocks": [false],
                 "prefix_list_ids": []
               }
             },
@@ -835,13 +1001,9 @@
                   "values": {
                     "cluster_name": "everything-as-code",
                     "force_update_version": null,
-                    "instance_types": [
-                      "t3.medium"
-                    ],
+                    "instance_types": ["t3.medium"],
                     "labels": null,
-                    "launch_template": [
-                      {}
-                    ],
+                    "launch_template": [{}],
                     "node_group_name_prefix": "initial-",
                     "remote_access": [],
                     "scaling_config": [
@@ -874,25 +1036,17 @@
                     "version": "1.29"
                   },
                   "sensitive_values": {
-                    "instance_types": [
-                      false
-                    ],
-                    "launch_template": [
-                      {}
-                    ],
+                    "instance_types": [false],
+                    "launch_template": [{}],
                     "remote_access": [],
                     "resources": [],
-                    "scaling_config": [
-                      {}
-                    ],
+                    "scaling_config": [{}],
                     "subnet_ids": [],
                     "tags": {},
                     "tags_all": {},
                     "taint": [],
                     "timeouts": {},
-                    "update_config": [
-                      {}
-                    ]
+                    "update_config": [{}]
                   }
                 },
                 {
@@ -1059,12 +1213,8 @@
                     "instance_requirements": [],
                     "license_specification": [],
                     "maintenance_options": [],
-                    "metadata_options": [
-                      {}
-                    ],
-                    "monitoring": [
-                      {}
-                    ],
+                    "metadata_options": [{}],
+                    "monitoring": [{}],
                     "network_interfaces": [],
                     "placement": [],
                     "private_dns_name_options": [],
@@ -1179,9 +1329,7 @@
                             "type": "AWS"
                           }
                         ],
-                        "resources": [
-                          "*"
-                        ],
+                        "resources": ["*"],
                         "sid": "KeyAdministration"
                       },
                       {
@@ -1199,15 +1347,11 @@
                         "not_resources": null,
                         "principals": [
                           {
-                            "identifiers": [
-                              null
-                            ],
+                            "identifiers": [null],
                             "type": "AWS"
                           }
                         ],
-                        "resources": [
-                          "*"
-                        ],
+                        "resources": ["*"],
                         "sid": "KeyUsage"
                       }
                     ],
@@ -1240,35 +1384,21 @@
                         "not_principals": [],
                         "principals": [
                           {
-                            "identifiers": [
-                              false
-                            ]
+                            "identifiers": [false]
                           }
                         ],
-                        "resources": [
-                          false
-                        ]
+                        "resources": [false]
                       },
                       {
-                        "actions": [
-                          false,
-                          false,
-                          false,
-                          false,
-                          false
-                        ],
+                        "actions": [false, false, false, false, false],
                         "condition": [],
                         "not_principals": [],
                         "principals": [
                           {
-                            "identifiers": [
-                              false
-                            ]
+                            "identifiers": [false]
                           }
                         ],
-                        "resources": [
-                          false
-                        ]
+                        "resources": [false]
                       }
                     ]
                   }
@@ -1348,14 +1478,8 @@
                 }
               },
               "sensitive_values": {
-                "egress": [
-                  {},
-                  {}
-                ],
-                "ingress": [
-                  {},
-                  {}
-                ],
+                "egress": [{}, {}],
+                "ingress": [{}, {}],
                 "tags": {},
                 "tags_all": {}
               }
