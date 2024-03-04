@@ -23,11 +23,11 @@ jobs:
       - name: Check nctl version
         run: nctl version
 
-      - name: NCTL Scan - Terraform
+      - name: NCTL Scan - ArgoCD Apps
         # cd config-files/terraform
         # terraform init
         # terraform plan -out tfplan.binary
         # terraform show -json tfplan.binary | jq > payload.json
-        run: nctl scan terraform --policies policies/argocd/check-argocd-application.yaml --resources argo-cd/apps --audit-as-warn
+        run: nctl scan terraform --policies policies/argocd/check-argocd-application.yaml --resources argo-cd/apps
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
