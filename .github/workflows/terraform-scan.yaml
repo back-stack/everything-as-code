@@ -1,4 +1,4 @@
-name: NCTL Scan Terraform Demo
+name: NCTL Scan FinOps Terraform
 run-name: ${{ github.actor }} has triggered Scan Action 🚀
 on:
   workflow_dispatch:
