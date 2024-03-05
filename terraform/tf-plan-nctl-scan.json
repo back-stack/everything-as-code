@@ -96,7 +96,7 @@
               "ga.anonymizeusers": "false",
               "helm.enabled": "true",
               "kustomize.enabled": "true",
-              "server.rbac.log.enforce.enable": "false",
+              "server.rbac.log.enforce.enable": "true",
               "statusbadge.enabled": "false",
               "ui.bannerpermanent": "false",
               "users.anonymous.enabled": "false"
