@@ -5,7 +5,9 @@ on:
   pull_request:
     branches:
       - "main"
-
+    paths:
+      - 'argo-cd/apps/**'
+      - 'terraform/tf-plan-*.json'
 jobs:
   NCTL-Scan-Terraform-FinOps:
     runs-on: ubuntu-latest
