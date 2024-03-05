@@ -18,5 +18,5 @@ spec:
     mutate:
       patchStrategicMerge:
         metadata:
-          annotation:
+          annotations:
             kyverno.io/createdBy: "{{request.userInfo.username}}"
