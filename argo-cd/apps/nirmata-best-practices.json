@@ -23,6 +23,13 @@
       "syncOptions": [
         "ServerSideApply=true"
       ]
-    }
+    },
+    "ignoreDifferences": [{
+      "kind": "ClusterPolicy",
+      "group": "kyverno.io",
+      "jqPathExpressions": [
+        ".spec.rules[].skipBackgroundRequests"
+      ]
+    }]
   }
 }
