@@ -22,6 +22,7 @@ spec:
         apiVersion: v1
         name: limit-range-sm
         namespace: "{{request.object.metadata.name}}"
+        skipBackgroundRequests: true
         data:
           spec:
             limits:
@@ -45,6 +46,7 @@ spec:
         apiVersion: v1
         name: limit-range-md
         namespace: "{{request.object.metadata.name}}"
+        skipBackgroundRequests: true
         data:
           spec:
             limits:
@@ -68,6 +70,7 @@ spec:
         apiVersion: v1
         name: limit-range-lg
         namespace: "{{request.object.metadata.name}}"
+        skipBackgroundRequests: true
         data:
           spec:
             limits:
