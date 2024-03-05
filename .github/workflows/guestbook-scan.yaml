@@ -1,4 +1,4 @@
-name: NCTL Scan ArgoCD Applications
+name: NCTL Scan Kubernetes App Scan
 run-name: ${{ github.actor }} has triggered Scan Action 🚀
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
       - "main"
 
 jobs:
-  NCTL-Scan-ArgoCD-Apps:
+  NCTL-Scan-Kubernetes-App:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -18,19 +18,11 @@ jobs:
       - name: nctl-scan-installer
         uses: nirmata/action-install-nctl-scan@v0.0.3
 
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-
-      - name: Check nctl version
-        run: nctl version
-
       - name: NCTL Scan - ArgoCD Apps
         # cd config-files/terraform
         # terraform init
         # terraform plan -out tfplan.binary
         # terraform show -json tfplan.binary | jq > payload.json
-        run: |
-          for i in $(ls argo-cd/apps); do
-            nctl scan json --policies policies/argocd/check-argocd-application.yaml --resources ${i}
-          done
+        run: nctl scan kubernetes --policies policies/kubernetes/validating-check-ns-labels.yaml --resources guestbook/ --details
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
