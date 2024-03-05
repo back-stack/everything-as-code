@@ -8,6 +8,7 @@ spec:
   background: false
   rules:
     - name: check-ns
+      skipBackgroundRequests: true
       match:
         resources:
           kinds:
