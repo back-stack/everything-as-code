@@ -1,4 +1,4 @@
-name: NCTL Scan FinOps Terraform
+name: NCTL Scan Terraform
 run-name: ${{ github.actor }} has triggered Scan Action 🚀
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
       - "main"
 
 jobs:
-  NCTL-Scan-Terraform:
+  NCTL-Scan-Terraform-FinOps:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -27,7 +27,7 @@ jobs:
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
-  NCTL-Scan-ArgoCD-Apps:
+  NCTL-Scan-ArgoCD-Apps-Security:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
