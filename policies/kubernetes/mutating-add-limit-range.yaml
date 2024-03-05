@@ -10,7 +10,6 @@ spec:
   background: false
   rules:
     - name: add-limit-range-sm
-      skipBackgroundRequests: true
       match:
         resources:
           kinds:
@@ -34,7 +33,6 @@ spec:
                   cpu: 100m
                 type: Container
     - name: add-limit-range-md
-      skipBackgroundRequests: true
       match:
         resources:
           kinds:
@@ -58,7 +56,6 @@ spec:
                   cpu: 100m
                 type: Container
     - name: add-limit-range-lg
-      skipBackgroundRequests: true
       match:
         resources:
           kinds:

@@ -7,7 +7,6 @@ spec:
   background: false
   rules:
   - name: add-label
-    skipBackgroundRequests: true
     match:
       resources:
         kinds:

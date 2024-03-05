@@ -11,7 +11,6 @@ spec:
   background: false
   rules:
     - name: add-quota-sm
-      skipBackgroundRequests: true
       match:
         resources:
           kinds:
@@ -40,7 +39,6 @@ spec:
               services: "1"
               services.loadbalancers: "1"
     - name: add-quota-md
-      skipBackgroundRequests: true
       match:
         resources:
           kinds:
@@ -69,7 +67,6 @@ spec:
               secrets: "10"
               services.loadbalancers: "3"
     - name: add-quota-lg
-      skipBackgroundRequests: true
       match:
         resources:
           kinds:
