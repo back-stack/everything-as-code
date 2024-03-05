@@ -10,6 +10,7 @@ spec:
   background: false
   rules:
     - name: add-limit-range-sm
+      skipBackgroundRequests: true
       match:
         resources:
           kinds:
@@ -22,7 +23,6 @@ spec:
         apiVersion: v1
         name: limit-range-sm
         namespace: "{{request.object.metadata.name}}"
-        skipBackgroundRequests: true
         data:
           spec:
             limits:
@@ -34,6 +34,7 @@ spec:
                   cpu: 100m
                 type: Container
     - name: add-limit-range-md
+      skipBackgroundRequests: true
       match:
         resources:
           kinds:
@@ -46,7 +47,6 @@ spec:
         apiVersion: v1
         name: limit-range-md
         namespace: "{{request.object.metadata.name}}"
-        skipBackgroundRequests: true
         data:
           spec:
             limits:
@@ -58,6 +58,7 @@ spec:
                   cpu: 100m
                 type: Container
     - name: add-limit-range-lg
+      skipBackgroundRequests: true
       match:
         resources:
           kinds:
@@ -70,7 +71,6 @@ spec:
         apiVersion: v1
         name: limit-range-lg
         namespace: "{{request.object.metadata.name}}"
-        skipBackgroundRequests: true
         data:
           spec:
             limits:
