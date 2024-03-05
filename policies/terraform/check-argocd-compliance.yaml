@@ -7,32 +7,14 @@ spec:
     - name: check-ec2-instance-size
       match:
         all:
-        - (planned_values.root_module.child_modules[].child_modules[].resources[?type=='aws_eks_node_group'] | length(@) > `0`): true
+        - (planned_values.root_module.resources[?type=='akp_instance'].values.argocd_cm[] | length(@) > `0`): true
       assert:
-        all:
-        - message: EC2 Instances should be of type t3.medium
+        any:
+        - message: Do not allow anonymous users for ArgoCD Instances
           check:
             planned_values:
               root_module:
-                ~.(child_modules || `[]`):
-                  ~.(child_modules || `[]`):
-                    ~.(resources[?type=='aws_eks_node_group']):
-                      values:
-                        instance_types:
-                          (contains(@, 't3.medium')): true
-    - name: check-ec2-max-size
-      match:
-        all:
-        - (planned_values.root_module.child_modules[].child_modules[].resources[?type=='aws_eks_node_group'] | length(@) > `0`): true
-      assert:
-        all:
-        - message: EC2 Instances are allowed a max size of 5
-          check:
-            planned_values:
-              root_module:
-                ~.(child_modules || `[]`):
-                  ~.(child_modules || `[]`):
-                    ~.(resources[?type=='aws_eks_node_group']):
-                      values:
-                        ~.scaling_config:
-                            (max_size < `5`): true
+                ~.(resources[?type=='akp_instance']):
+                  values:
+                    argocd_cm:
+                      (users.anonymous.enabled == 'true'): true
