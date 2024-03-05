@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   name: guestbook
   labels:
-    type: small
+    type: medium
