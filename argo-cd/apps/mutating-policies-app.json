@@ -24,12 +24,12 @@
         "ServerSideApply=true"
       ]
     },
-    "ignoreDifferences": {
+    "ignoreDifferences": [{
       "kind": "ClusterPolicy",
       "group": "kyverno.io",
       "jqPathExpressions": [
         ".spec.rules[].skipBackgroundRequests"
       ]
-    }
+    }]
   }
 }
