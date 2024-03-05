@@ -17,3 +17,9 @@ spec:
       selfHeal: false
     syncOptions:
       - ServerSideApply=true
+  ignoreDifferences:
+    # Ignore controller added field.
+    - kind: ClusterPolicy
+      group: kyverno.io
+      jqPathExpressions:
+      - .spec.rules[].skipBackgroundRequests
