@@ -2,7 +2,7 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: add-quota
+  name: add-finops-quota
   annotations:
     policies.kyverno.io/description: >-
       Generate resource qoutas based on Namespace type
