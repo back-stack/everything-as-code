@@ -1,15 +1,15 @@
 apiVersion: json.kyverno.io/v1alpha1
 kind: ValidatingPolicy
 metadata:
-  name: check-ec2-finops-compliance
+  name: check-argocd-security-compliance
 spec:
   rules:
-    - name: check-ec2-instance-size
+    - name: check-argocd-anonymous-users
       match:
         all:
         - (planned_values.root_module.resources[?type=='akp_instance'].values.argocd_cm[] | length(@) > `0`): true
       assert:
-        any:
+        all:
         - message: Do not allow anonymous users for ArgoCD Instances
           check:
             planned_values:
@@ -17,4 +17,18 @@ spec:
                 ~.(resources[?type=='akp_instance']):
                   values:
                     argocd_cm:
-                      (users.anonymous.enabled == 'true'): true
+                      users.anonymous.enabled: 'false'
+    - name: check-argocd-rbac-log
+      match:
+        all:
+        - (planned_values.root_module.resources[?type=='akp_instance'].values.argocd_cm[] | length(@) > `0`): true
+      assert:
+        all:
+        - message: RBAC Logging must be enabled
+          check:
+            planned_values:
+              root_module:
+                ~.(resources[?type=='akp_instance']):
+                  values:
+                    argocd_cm:
+                      server.rbac.log.enforce.enable: 'true'
