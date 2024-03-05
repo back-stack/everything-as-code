@@ -1,7 +1,7 @@
 apiVersion: json.kyverno.io/v1alpha1
 kind: ValidatingPolicy
 metadata:
-  name: check-ec2-finops-compliance
+  name: check-aws-finops-compliance
 spec:
   rules:
     - name: check-ec2-instance-size
