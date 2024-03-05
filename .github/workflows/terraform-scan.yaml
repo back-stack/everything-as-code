@@ -1,5 +1,5 @@
 name: NCTL Scan Terraform
-run-name: ${{ github.actor }} has triggered Scan Action 🚀
+run-name: ${{ github.actor }} has triggered Terraform Scan Action 🚀
 on:
   workflow_dispatch:
   pull_request:

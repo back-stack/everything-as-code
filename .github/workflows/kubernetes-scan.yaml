@@ -1,5 +1,5 @@
 name: NCTL Scan Kubernetes App Scan
-run-name: ${{ github.actor }} has triggered Scan Action 🚀
+run-name: ${{ github.actor }} has triggered Kubernetes Manifest Scan Action 🚀
 on:
   workflow_dispatch:
   pull_request:
