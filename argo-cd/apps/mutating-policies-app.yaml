@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: guestbook
+  name: mutating-policies-app
 spec:
   destination:
     name: eks-everything-as-code
@@ -10,3 +10,10 @@ spec:
     path: policies/kubernetes
     repoURL: https://github.com/back-stack/everything-as-code.git
     targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+      - ServerSideApply=true
