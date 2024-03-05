@@ -35,6 +35,6 @@ jobs:
         uses: nirmata/action-install-nctl-scan@v0.0.4
 
       - name: NCTL Scan - ArgoCD Apps
-        run: nctl scan json --policies policies/argocd/check-argocd-application.yaml --resources argo-cd/apps/*.json
+        run: nctl scan json --policies policies/argocd/ --resources argo-cd/apps/*.json
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
