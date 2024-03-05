@@ -1,6 +1,3 @@
-############
-## Akuity ##
-############
 variable "akp_org_name" {
   type        = string
   description = "Akuity Platform organization name."

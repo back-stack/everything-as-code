@@ -1,5 +1,4 @@
 resource "argocd_application" "app-of-apps" {
-
   metadata {
     name      = "app-of-apps"
     namespace = "argocd"

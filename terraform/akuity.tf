@@ -32,7 +32,6 @@ resource "akp_instance" "argocd" {
   argocd_secret = {
     "admin.password" = "${bcrypt(var.argocd_admin_password)}"
   }
-  # repo_credential_secrets = var.repo_credential_secrets
   lifecycle {
     ignore_changes = [
       argocd_secret["admin.password"],
