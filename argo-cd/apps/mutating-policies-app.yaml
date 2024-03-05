@@ -6,7 +6,6 @@ spec:
   destination:
     name: eks-everything-as-code
     namespace: kyverno
-  project: default
   source:
     path: policies/kubernetes
     repoURL: https://github.com/back-stack/everything-as-code.git
