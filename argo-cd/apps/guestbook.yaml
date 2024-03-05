@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: guestbook
+  annotations:
+    # Sync after kyverno and policies.
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  destination:
+    name: eks-everything-as-code
+    namespace: guestbook
+  source:
+    repoURL: 'https://github.com/back-stack/everything-as-code'
+    path: guestbook
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
