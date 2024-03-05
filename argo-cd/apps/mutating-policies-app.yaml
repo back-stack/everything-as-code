@@ -1,25 +1,25 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: mutating-policies-app
-spec:
-  destination:
-    name: eks-everything-as-code
-    namespace: kyverno
-  source:
-    path: policies/kubernetes
-    repoURL: https://github.com/back-stack/everything-as-code.git
-    targetRevision: HEAD
-  project: default
-  syncPolicy:
-    automated:
-      prune: false
-      selfHeal: false
-    syncOptions:
-      - ServerSideApply=true
-  ignoreDifferences:
-    # Ignore controller added field.
-    - kind: ClusterPolicy
-      group: kyverno.io
-      jqPathExpressions:
-      - .spec.rules[].skipBackgroundRequests
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: mutating-policies-app
+# spec:
+#   destination:
+#     name: eks-everything-as-code
+#     namespace: kyverno
+#   source:
+#     path: policies/kubernetes
+#     repoURL: https://github.com/back-stack/everything-as-code.git
+#     targetRevision: HEAD
+#   project: default
+#   syncPolicy:
+#     automated:
+#       prune: false
+#       selfHeal: false
+#     syncOptions:
+#       - ServerSideApply=true
+#   ignoreDifferences:
+#     # Ignore controller added field.
+#     - kind: ClusterPolicy
+#       group: kyverno.io
+#       jqPathExpressions:
+#       - .spec.rules[].skipBackgroundRequests
