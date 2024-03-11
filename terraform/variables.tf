@@ -14,7 +14,7 @@ variable "app_of_apps" {
   })
   default = {
     repo_url = "https://github.com/back-stack/everything-as-code"
-    path = "argo-cd/apps"
+    path = "argo-cd/"
     target_revision = "HEAD"
   }
 }
