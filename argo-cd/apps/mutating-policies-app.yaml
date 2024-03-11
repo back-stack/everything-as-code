@@ -3,7 +3,7 @@
 # metadata:
 #   name: mutating-policies-app
 #   annotations:
-#     argocd.argoproj.io/sync-wave: "1"
+#     argocd.argoproj.io/sync-wave: "-1"
 # spec:
 #   destination:
 #     name: eks-everything-as-code

@@ -3,7 +3,7 @@
   "kind": "Application",
   "metadata": {
     "name": "mutating-policies-app",
-    "argocd.argoproj.io/sync-wave": "1"
+    "argocd.argoproj.io/sync-wave": "-1"
   },
   "spec": {
     "destination": {
