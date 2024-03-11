@@ -2,6 +2,8 @@
 # kind: Application
 # metadata:
 #   name: nirmata-best-practices
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "1"
 # spec:
 #   destination:
 #     name: eks-everything-as-code
